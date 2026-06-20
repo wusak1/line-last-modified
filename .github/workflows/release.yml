@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Build installation ZIP
+        shell: bash
+        run: |
+          version="$(node -p "require('./manifest.json').version")"
+          mkdir -p release
+          zip -j "release/line-last-modified-${version}.zip" manifest.json main.js styles.css
+          sha256sum "release/line-last-modified-${version}.zip" >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          version="$(node -p "require('./manifest.json').version")"
+          archive="release/line-last-modified-${version}.zip"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$archive" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$archive" --title "$version" --generate-notes
+          fi
