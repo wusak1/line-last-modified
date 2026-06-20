@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/styles.css">
+	<style>
+		:root { --size-4-2: 8px; --size-4-3: 12px; }
+		* { box-sizing: border-box; }
+		body { margin: 0; padding: 38px; color: #ddd; background: #1e1e1e; font: 16px system-ui; }
+		.panel { width: 100%; padding: 20px; border-radius: 18px; background: #242424; }
+		.setting-item { display: flex; justify-content: space-between; }
+		.setting-item-info { min-width: 0; }
+		.setting-item-name { font-weight: 600; }
+		.setting-item-description { margin-top: 6px; color: #bbb; }
+		.setting-item-control { display: flex; align-items: center; }
+		select, input, button { min-height: 38px; padding: 6px 12px; color: #ddd; background: #333; border: 1px solid #555; border-radius: 6px; font: inherit; }
+	</style>
+	<title>Responsive font setting harness</title>
+</head>
+<body>
+	<h2>Timestamp appearance</h2>
+	<div class="panel">
+		<div class="setting-item line-last-modified-font-setting" data-testid="font-setting">
+			<div class="setting-item-info" data-testid="setting-info">
+				<div class="setting-item-name">Font family</div>
+				<div class="setting-item-description">Choose an Obsidian font or a font available on this device. Scan results stay local and are not written to sync metadata.</div>
+			</div>
+			<div class="setting-item-control" data-testid="setting-control">
+				<select><option>Obsidian monospace font</option></select>
+				<input value="var(--font-monospace)">
+				<button>Scan local fonts</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

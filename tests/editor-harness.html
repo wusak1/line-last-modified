@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Line Last Modified editor harness</title>
+	<style>
+		body { font-family: system-ui, sans-serif; margin: 2rem; }
+		#editor { border: 1px solid #888; padding: 0.75rem; max-width: 52rem; }
+		.cm-editor { min-height: 8rem; }
+		.llm-current-line-timestamp { margin-left: 0.75rem; color: #6b7280; }
+		#result { white-space: pre-wrap; margin-top: 1rem; }
+	</style>
+</head>
+<body>
+	<h1>Line Last Modified editor harness</h1>
+	<div id="editor"></div>
+	<pre id="result" data-testid="result">running</pre>
+	<script src="harness.js"></script>
+</body>
+</html>

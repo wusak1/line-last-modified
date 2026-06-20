@@ -1,0 +1,10 @@
+{
+	"id": "line-last-modified",
+	"name": "Line Last Modified",
+	"version": "1.0.0",
+	"minAppVersion": "1.5.0",
+	"description": "Show the current Markdown line's latest Git, local, or synchronized edit time without changing note content.",
+	"author": "wusak1",
+	"authorUrl": "https://github.com/wusak1",
+	"isDesktopOnly": false
+}
